@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Updated import
 // import { TextInput } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 
 const listings = [
   {
@@ -142,7 +143,7 @@ function SearchListingsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.filterContainer}>
+      <ScrollView style={styles.filterContainer} contentContainerStyle={{ paddingBottom: 20 }}>
         <TextInput
           style={styles.input}
           placeholder="Location"
@@ -192,7 +193,7 @@ function SearchListingsScreen({ navigation }) {
           <Picker.Item label="Villas" value="Villas" />
           <Picker.Item label="Offices" value="Offices" />
         </Picker>
-      </View>
+      </ScrollView>
 
       <TouchableOpacity style={styles.clearButton} onPress={clearFilters}>
         <Text style={styles.clearButtonText}>Clear Filters</Text>
@@ -217,7 +218,6 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     marginBottom: 20,
-    paddingHorizontal: 10,
   },
   input: {
     backgroundColor: '#fff',
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   clearButton: {
-    backgroundColor: '#FF6347',
+    backgroundColor: '#4CAF50',
     padding: 10,
     borderRadius: 8,
     marginBottom: 15,
