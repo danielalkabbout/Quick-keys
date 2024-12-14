@@ -15,7 +15,7 @@ import { ScrollView } from 'react-native';
 const listings = [
   {
     id: 1,
-    cover: '.\Images\list\p-1.png',
+    cover: require('../Images/list/p-1.png'),
     name: "Downtown Realty",
     location: "Beirut Central District, Lebanon",
     category: "For Rent",
@@ -25,7 +25,7 @@ const listings = [
   },
   {
     id: 2,
-    cover: "../Images/list/p-2.png",
+    cover: require("../Images/list/p-2.png"),
     name: "Cedar Properties",
     location: "Zahle, Bekaa, Lebanon",
     category: "For Sale",
@@ -35,7 +35,7 @@ const listings = [
   },
   {
     id: 3,
-    cover: "../Images/list/p-7.png",
+    cover: require("../Images/list/p-7.png"),
     name: "Phoenician Realty",
     location: "Tripoli Souks, Tripoli, Lebanon",
     category: "For Rent",
@@ -45,7 +45,7 @@ const listings = [
   },
   {
     id: 4,
-    cover: "../Images/list/p-4.png",
+    cover: require("../Images/list/p-4.png"),
     name: "Lebanon Luxury Estates",
     location: "Fakra Village, Keserwan, Lebanon",
     category: "For Sale",
@@ -55,7 +55,7 @@ const listings = [
   },
   {
     id: 5,
-    cover: "../Images/list/p-5.png",
+    cover: require("../Images/list/p-5.png"),
     name: "Byblos Heritage Realty",
     location: "Old Souk, Byblos, Lebanon",
     category: "For Rent",
@@ -65,7 +65,7 @@ const listings = [
   },
   {
     id: 6,
-    cover: "../Images/list/p-6.png",
+    cover: require("../Images/list/p-6.png"),
     name: "Cedars Real Estate",
     location: "Bcharre, North Lebanon",
     category: "For Sale",
@@ -112,14 +112,11 @@ function SearchListingsScreen({ navigation }) {
         navigation.navigate('PropertyDetails', {
           propertyId: item.id,
           description: item.description,
-          cover: item.cover || 'https://placehold.co/300x200',
+          cover: item.cover,
         })
       }
     >
-      <Image
-        source={{ uri: item.cover || 'https://placehold.co/300x200' }}
-        style={styles.image}
-      />
+      <Image source={item.cover} style={styles.image} />
       <View style={styles.cardContent}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.location}>{item.location}</Text>

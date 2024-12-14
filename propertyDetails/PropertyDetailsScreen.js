@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/native';
 function PropertyDetailsScreen() {
   const route = useRoute();
   const { description, propertyId, cover } = route.params || {};
-  const placeholderImage = 'https://placehold.co/300x200';
+  
 
   if (!propertyId) {
     return (
@@ -17,10 +17,8 @@ function PropertyDetailsScreen() {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: cover || placeholderImage }}
-        style={styles.image}
-      />
+     <Image source={cover} style={styles.image} />
+
       <Text style={styles.header}>Property Details</Text>
       <Text style={styles.detailText}>{description}</Text>
     </View>
