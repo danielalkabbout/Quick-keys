@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image 
-        source={{ uri: 'https://example.com/logo.png' }} // Replace with your logo URL
-        style={styles.logo} 
-      />
+  <Image 
+  source={require('C:\\Users\\HP\\Desktop\\React Native\\QuickKeys\\Quickkeys\\Images\\quickkeyslogo.png')} // Use require for local files
+  style={styles.logo} 
+/>
+
       <Text style={styles.title}>Welcome to QuickKeys!</Text>
       <Text style={styles.subtitle}>
         Your trusted partner in finding comfortable and affordable rental homes. Explore a variety of properties tailored to your needs.
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 300,
+    height: 120,
     marginBottom: 20,
     borderRadius: 50,
   },
