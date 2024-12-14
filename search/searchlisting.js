@@ -15,7 +15,7 @@ import { ScrollView } from 'react-native';
 const listings = [
   {
     id: 1,
-    cover: '../assets/images/list/p-1.png',
+    cover: '.\Images\list\p-1.png',
     name: "Downtown Realty",
     location: "Beirut Central District, Lebanon",
     category: "For Rent",
