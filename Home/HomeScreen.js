@@ -5,7 +5,7 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
   <Image 
-  //source={require('C:\\Users\\HP\\Desktop\\React Native\\QuickKeys\\Quickkeys\\Images\\quickkeyslogo.png')} // Use require for local files
+  source={require('C:\\Users\\HP\\Desktop\\React Native\\QuickKeys\\Quickkeys\\Images\\quickkeyslogo.png')} // Use require for local files
   style={styles.logo} 
 />
 

@@ -7,9 +7,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Linking,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker'; // Updated import
-// import { TextInput } from 'react-native-gesture-handler';
+import { Picker } from '@react-native-picker/picker';
 import { ScrollView } from 'react-native';
 
 const listings = [
@@ -22,6 +22,7 @@ const listings = [
     price: "$1,200",
     type: "Apartment",
     description: "1 Bedroom, 1 Living Room, 1 Bathroom, Gym access.",
+    phone: "+96112345678",
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const listings = [
     price: "$500,000",
     type: "Villas",
     description: "4 Bedrooms, 3 Bathrooms, Gym, Pool.",
+    phone: "+96187654321",
   },
   {
     id: 3,
@@ -42,40 +44,12 @@ const listings = [
     price: "$2,500",
     type: "Offices",
     description: "5 Rooms, 2 Bathrooms, Gym access.",
+    phone: "+96145678901",
   },
-  {
-    id: 4,
-    cover: require("../Images/list/p-4.png"),
-    name: "Lebanon Luxury Estates",
-    location: "Fakra Village, Keserwan, Lebanon",
-    category: "For Sale",
-    price: "$1,200,000",
-    type: "Homes & Villas",
-    description: "5 Bedrooms, 6 Bathrooms, Gym, Pool.",
-  },
-  {
-    id: 5,
-    cover: require("../Images/list/p-5.png"),
-    name: "Byblos Heritage Realty",
-    location: "Old Souk, Byblos, Lebanon",
-    category: "For Rent",
-    price: "$1,800",
-    type: "Commercial",
-    description: "Open-plan, 2 Rooms, 1 Bathroom.",
-  },
-  {
-    id: 6,
-    cover: require("../Images/list/p-6.png"),
-    name: "Cedars Real Estate",
-    location: "Bcharre, North Lebanon",
-    category: "For Sale",
-    price: "$350,000",
-    type: "Apartment",
-    description: "2 Bedrooms, 1 Bathroom, Gym access.",
-  },
+  // Add more listings as needed
 ];
+
 function SearchListingsScreen({ navigation }) {
-  // Ensure filters are properly initialized
   const [filters, setFilters] = useState({
     location: '',
     category: '',
@@ -84,7 +58,6 @@ function SearchListingsScreen({ navigation }) {
     priceMax: '',
   });
 
-  // Helper function to convert price string to a number
   const convertPriceToNumber = (price) => {
     return parseFloat(price.replace(/[^\d.-]/g, '')) || 0;
   };
@@ -123,11 +96,16 @@ function SearchListingsScreen({ navigation }) {
         <Text style={styles.price}>{item.price}</Text>
         <Text style={styles.type}>{item.type}</Text>
         <Text style={styles.category}>{item.category}</Text>
+        <TouchableOpacity
+          style={styles.callButton}
+          onPress={() => Linking.openURL(`tel:${item.phone}`)}
+        >
+          <Text style={styles.callButtonText}>Call Landlord</Text>
+        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
 
-  // Reset the filters to their default state
   const clearFilters = () => {
     setFilters({
       location: '',
@@ -144,7 +122,7 @@ function SearchListingsScreen({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Location"
-          value={filters.location} // Ensure filters is referenced correctly
+          value={filters.location}
           onChangeText={(text) =>
             setFilters((prev) => ({ ...prev, location: text }))
           }
@@ -153,7 +131,7 @@ function SearchListingsScreen({ navigation }) {
           style={styles.input}
           placeholder="Min Price"
           keyboardType="numeric"
-          value={filters.priceMin} // Ensure filters is referenced correctly
+          value={filters.priceMin}
           onChangeText={(text) =>
             setFilters((prev) => ({ ...prev, priceMin: text }))
           }
@@ -162,13 +140,13 @@ function SearchListingsScreen({ navigation }) {
           style={styles.input}
           placeholder="Max Price"
           keyboardType="numeric"
-          value={filters.priceMax} // Ensure filters is referenced correctly
+          value={filters.priceMax}
           onChangeText={(text) =>
             setFilters((prev) => ({ ...prev, priceMax: text }))
           }
         />
         <Picker
-          selectedValue={filters.category} // Ensure filters is referenced correctly
+          selectedValue={filters.category}
           style={styles.picker}
           onValueChange={(itemValue) =>
             setFilters((prev) => ({ ...prev, category: itemValue }))
@@ -179,7 +157,7 @@ function SearchListingsScreen({ navigation }) {
           <Picker.Item label="For Sale" value="For Sale" />
         </Picker>
         <Picker
-          selectedValue={filters.type} // Ensure filters is referenced correctly
+          selectedValue={filters.type}
           style={styles.picker}
           onValueChange={(itemValue) =>
             setFilters((prev) => ({ ...prev, type: itemValue }))
@@ -269,6 +247,17 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 14,
     color: '#888',
+  },
+  callButton: {
+    marginTop: 10,
+    backgroundColor: '#1E90FF',
+    padding: 10,
+    borderRadius: 8,
+  },
+  callButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   clearButton: {
     backgroundColor: '#a0b6cd',
